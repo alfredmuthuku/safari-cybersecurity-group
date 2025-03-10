@@ -35,3 +35,42 @@ app.get('/ke-cirt', async (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Proxy running on port ${PORT}`));
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Basic route
+app.get('/', (req, res) => {
+  res.send('🚀 Kenyan Cyber Threat Map Backend Running');
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+{
+  "name": "kenya-cyber-map",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}[phases.setup]
+nixPkgs = ["nodejs-18_x"]
+
+[phases.build]
+commands = ["npm ci"]
+
+[start]
+cmd = "npm start"
